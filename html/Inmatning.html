@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--
+	Per Johansson
+-->
+
+<html>
+    <head>
+    	<link rel="stylesheet" type="text/css" href="../css/inmatning.css">
+    	<link rel="stylesheet" type="text/css" href="../css/tabs.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>New Web Project</title>
+        <script type="text/javascript" src="../js/add.js"></script>
+        <script type="text/javascript" src="../js/Investeringar.js"></script>
+        <script type="text/javascript" src="../js/generella.js"></script>
+        <script type="text/javascript" src="../js/inkomster.js"></script>
+        <script type="text/javascript" src="../js/kostnader.js"></script>
+        <script type="text/javascript" src="../js/antalDagarAr.js"></script>
+        <script type="text/javascript" src="../js/resultatrakning.js"></script>
+    </head>
+    <body>
+    	<header>
+    		<div class="inmatning" id="inmatningsfönster">
+    			    		<form id="inmatning">
+
+    			<p>
+    				<div class="Investeringas" id ="Investeringar">
+    					<label class="test">Investeringar</label>
+    					<input type="button" value="Lägg till" id="addInvestering"/>
+    					<input type="button" value="Gör om resultaträkgning" id="görRäkning"/>
+    					<div class="Subinesteringar" id = "SubInvesteringar"></div>
+    					<p>
+    						<label class="text">Totala Investeringar: </label>
+    						<output name="test" id="totalInvestering" class="summa"></output>
+    						<label class="text">Avskrivning per år: </label>
+    						<output name="test" id="AvskrivningPerAr" class="summa"></output>
+    					</p>
+    					
+ 
+    				</div>
+    				<div class="Inkomster" id ="inkomster">
+    					<label class="test">Inkomster</label>
+    					<input type="button" value="Lägg till" id="addInkomst"/>
+    					<select id="inkomsttyp">
+    						<option value="Daglig">Daglig</option>
+    						<option value="Engångs">Engångs</option>
+    						<option value="Månadsvis">Månadsvis</option>
+  						</select>
+  						<input type="number" id ="daysPerYear" value = "300"/>
+    					<div class="Subinkomster" id = "SubInkomster"></div>
+    					<p>
+    						<label class="text">Totala Inkomster: </label>
+    						<output name="test" id="totalInkomst" class="summa"></output>
+    					</p>
+    					
+    				</div>
+    				<div class="Konstnader" id ="kostnader">
+    					<label class="test">Kostnader</label>
+    					<input type="button" value="Lägg till" id="addKostnad"/>
+    					<select id="kostnadstyp">
+    						<option value="Direkta">Direkta</option>
+    						<option value="Övriga">Övriga</option>
+    						<option value="Ränta">Ränta</option>
+  						</select>
+  						
+    					<div class="Subkostnader" id = "SubKostnader"></div>
+    					<p>
+    						<label class="text">Totala Kostnader: </label>
+    						<output name="test" id="totalKostnad" class="summa"></output>
+    					</p>
+    					
+    				</div>
+    				
+    			</p>
+    			
+    		</form>
+    		</div>
+    		<div class="tabs" id="resultatFönster">
+    			<div class="tab">
+       				<input type="radio" id="tab-1" name="tab-group-1" checked>
+       				<label for="tab-1">Resultat</label>
+       
+       				<div class="content" id="resultatrakning">
+           				<h1>Resultaträkning</h1>
+           				
+       				</div> 
+   				</div>
+    
+			   <div class="tab">
+			       <input type="radio" id="tab-2" name="tab-group-1">
+			       <label for="tab-2">Tab Two</label>
+			       
+			       <div class="content">
+			           stuff tab 2
+			       </div> 
+			   </div>
+    
+			    <div class="tab">
+			       <input type="radio" id="tab-3" name="tab-group-1">
+			       <label for="tab-3">Tab Three</label>
+			     
+			       <div class="content">
+			           stuff tab 3
+			       </div> 
+			   </div>
+    			
+    		</div>
+    	</header>
+        
+    </body>
+</html>

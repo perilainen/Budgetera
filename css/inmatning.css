@@ -1,0 +1,25 @@
+div.inmatning{
+	width:60%;
+	height:500px;
+	float:left;
+	border:3px solid navy;
+	overflow: scroll;
+}
+
+div.resultat{
+	width:30%;
+	height:500px;
+	float:right;
+	border:3px solid black;
+	overflow: scroll;
+}
+
+input{
+	background:#DDDDDD;
+}
+input:hover{
+	background:#FFFFFF;
+}
+output.resultaträkning{
+	float:right;
+}
