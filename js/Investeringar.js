@@ -62,7 +62,7 @@ function saveValues(){
 		investeringar[i].value = parseInt(elem.value);
 	}
 	caculateTotalInvestering();
-	
+	ritaUppAvskrivningar();
 }
 function saveAvskrivningstid(){
 	for (i=0; i<investeringar.length;i++){
@@ -72,14 +72,21 @@ function saveAvskrivningstid(){
 	
 	
 }
-function calculateAvskrivningPerAr(){
-	console.log("Calculate Avskrivning Per år")
-	var totalAvskrivning=0;
+function ritaUppAvskrivningar(){
 	var element = document.getElementById("AvskrivningPerAr")
+	var avskrivning = calculateAvskrivningPerAr();
+	element.innerHTML=avskrivning;
+}
+
+function calculateAvskrivningPerAr(){
+	
+	var totalAvskrivning=0;
+	
 	for (i=0; i<investeringar.length;i++){
 		totalAvskrivning +=investeringar[i].value/investeringar[i].avskrTid;
 	}
-	element.innerHTML=totalAvskrivning;
+	return totalAvskrivning;
+	
 }
 
 function caculateTotalInvestering(){

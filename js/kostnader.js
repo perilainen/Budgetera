@@ -51,16 +51,23 @@ function saveValuesKostnad(){
 		var elem = document.getElementById("kostnadVarde"+kostnader[i].id);
 		kostnader[i].value = parseInt(elem.value);
 	}
-	calculateTotalKostnad();
+	ritaTotalKostnad();
 	
+	
+}
+function ritaTotalKostnad(){
+	totalKostnad = calculateTotalKostnad();
+	var element = document.getElementById("totalKostnad");
+	element.innerHTML=totalKostnad;
 }
 function calculateTotalKostnad(){
 	var totalKostnad = 0;
-	var element = document.getElementById("totalKostnad");
+	
 	for (i=0;i<kostnader.length;i++){
 		totalKostnad += kostnader[i].value;
 	}
-	element.innerHTML=totalKostnad;
+	return totalKostnad;
+	
 }
 function updateDescriptionKostnad(){
 	updateDescription(kostnader,"kostnadBeskrivning");
