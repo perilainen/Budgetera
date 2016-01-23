@@ -66,7 +66,7 @@ function getInnerHTML(belopp,namn){
 	return paragraf
 }
 function init () {
-	document.getElementById("görRäkning").addEventListener("click",ritaResultaträkning,false);
+	//document.getElementById("görRäkning").addEventListener("click",ritaResultaträkning,false);
 	document.getElementById("tab-1").addEventListener("click",ritaResultaträkning,false);
 	document.getElementById("tab-2").addEventListener("click",ritaResultaträkning,false);
 	document.getElementById("tab-3").addEventListener("click",ritaResultaträkning,false);

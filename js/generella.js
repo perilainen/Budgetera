@@ -15,3 +15,14 @@ function updateDescription(typ,namn){
 		
 	}
 }
+
+function reDrawAll(){
+	ritaDetaljeradResultaträkning();
+	ritaResultaträkning();
+	ritaTotalInkomst();
+	ritaTotalKostnad();
+	ritaUppAvskrivningar();
+	ritaUppInkomster();
+	ritaUppInvesteringar();
+	ritaUppKostnader();
+}

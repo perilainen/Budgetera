@@ -25,7 +25,7 @@ function innerHTMLDetaljeradOmsättning(){
 		console.log(i)
 		var typ = typer[i];
 		var varde = calculateInkomsttyp(typ);
-		var paragraf = getInnerHTML(varde,typ)
+		var paragraf = getInnerHTML(varde,typ+" inkomst")
 		detaljeradOmsättning.appendChild(paragraf)
 	}
 	console.log(i)
