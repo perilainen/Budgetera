@@ -75,13 +75,36 @@ function ritaTotalInkomst(){
 	element.innerHTML = totalInkomst;
 }
 
+function getInkomstTyper(){
+	var inkomstTyper=[];
+	for (i=0;i<inkomster.length;i++){
+		console.log(inkomstTyper.indexOf(inkomster[i].type))
+		if (inkomstTyper.indexOf(inkomster[i].type)==-1){
+			inkomstTyper.push(inkomster[i].type)
+		}
+		
+		
+	}
+	console.log(inkomstTyper);
+	return inkomstTyper
+}
+
+function calculateInkomsttyp(typ){
+	var inkomst = 0;
+	for (i=0;i<inkomster.length;i++){
+		if (inkomster[i].type==typ){
+			inkomst += hämtaÅrligInkomst(inkomster[i]);
+		}
+		
+	}
+	return inkomst
+	
+}
+
 function calculateTotalInkomst(){
 	var totalInkomst = 0;
 	
 	for (i=0;i<inkomster.length;i++){
-		
-		console.log("inkomstnummer"+i)
-		console.log(inkomster[i].value);
 		
 		totalInkomst += hämtaÅrligInkomst(inkomster[i]);
 	}
