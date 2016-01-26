@@ -6,5 +6,4 @@ function transaktion(typ, namn , val, kategori, antal){
 	this.kategori = 
 	this.antal = 1;
 	this.totalBelopp = this.id*this.antal;
-	
 }
