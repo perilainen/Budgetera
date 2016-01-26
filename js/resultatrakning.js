@@ -52,8 +52,9 @@ function innerHTMLOmsättning(){
 	
 }
 
-function getInnerHTML(belopp,namn){
+function getInnerHTML(belopp,namn,layClass="normalFont"){
 	var paragraf = document.createElement("p");
+	paragraf.setAttribute("class",layClass);
 	var beskrivning = document.createElement("output");
 	beskrivning.setAttribute("type","string");
 	beskrivning.innerHTML=namn

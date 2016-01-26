@@ -15,8 +15,8 @@ function init(){
 function appendInkomst(){
 	var elem = document.getElementById("inkomsttyp");
 	var typ = elem.options[ elem.selectedIndex ].value;
-	var inkom = new inkomst(typ);
-	Budgets.inkomster.push(inkom);
+	var inkom = new transaktion("inkomst","namn",0,"inkomst",1);
+	Budgets.transaktioner.push(inkom);
 	ritaUppInkomster();
 }
 function ritaUppInkomster(){
@@ -24,26 +24,30 @@ function ritaUppInkomster(){
 	while (element.firstChild) {
     	element.removeChild(element.firstChild);
 	}
-	for (i=0;i<Budgets.inkomster.length;i++){
-		var newElem = document.createElement("p");
-		var varde = document.createElement("input");
-		varde.setAttribute("type","number");
-		varde.setAttribute("value",Budgets.inkomster[i].value);
-		varde.setAttribute("id","inkomstVarde"+Budgets.inkomster[i].id);
-		varde.addEventListener("change",saveValuesInkomst,false);
-		
-		var beskrivning = document.createElement("input");
-		beskrivning.setAttribute("type","string");
-		beskrivning.setAttribute("value",Budgets.inkomster[i].namn);
-		beskrivning.setAttribute("id","inkomstBeskrivning"+Budgets.inkomster[i].id);
-		beskrivning.addEventListener("change",updateDescriptionInkomst,false);
-		
-		var typ = document.createElement("label");
-		typ.innerHTML=Budgets.inkomster[i].type;
-		newElem.appendChild(beskrivning);
-		newElem.appendChild(varde);
-		newElem.appendChild(typ);	
-		element.appendChild(newElem);
+	console.log(Budgets.transaktioner.length)
+	for (i=0;i<Budgets.transaktioner.length;i++){
+		console.log(Budgets.transaktioner[i].type)
+		if (Budgets.transaktioner[i].type=="inkomst"){
+			var newElem = document.createElement("p");
+			var varde = document.createElement("input");
+			varde.setAttribute("type","number");
+			varde.setAttribute("value",Budgets.transaktioner[i].value);
+			varde.setAttribute("id","inkomstVarde"+Budgets.transaktioner[i].id);
+			varde.addEventListener("change",saveValuesInkomst,false);
+			
+			var beskrivning = document.createElement("input");
+			beskrivning.setAttribute("type","string");
+			beskrivning.setAttribute("value",Budgets.transaktioner[i].namn);
+			beskrivning.setAttribute("id","inkomstBeskrivning"+Budgets.transaktioner[i].id);
+			beskrivning.addEventListener("change",updateDescriptionInkomst,false);
+			
+			var typ = document.createElement("label");
+			typ.innerHTML=Budgets.transaktioner[i].type;
+			newElem.appendChild(beskrivning);
+			newElem.appendChild(varde);
+			newElem.appendChild(typ);	
+			element.appendChild(newElem);
+		}
 	}
 }
 

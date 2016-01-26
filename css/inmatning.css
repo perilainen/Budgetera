@@ -23,3 +23,10 @@ input:hover{
 output.resultaträkning{
 	float:right;
 }
+
+.smallFont{
+	font-size: 8px;
+}
+.normalFont{
+	font-size:12 px;
+}
