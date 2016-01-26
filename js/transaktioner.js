@@ -1,4 +1,3 @@
-
 function transaktion(typ, namn , val, kategori, antal){
 	this.namn = namn;
 	this.value = val;
