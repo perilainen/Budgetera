@@ -1,4 +1,3 @@
-
 function inkomst(type){
 	this.namn = "inkomst";
 	this.value = 0;
