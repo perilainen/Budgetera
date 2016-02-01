@@ -21,7 +21,7 @@ function ritaUppInvesteringar(){
 	while (element.firstChild) {
     	element.removeChild(element.firstChild);
 	}
-	for (i=0; i < Budgets.investeringar.length; i++){
+	for (var i=0; i < Budgets.investeringar.length; i++){
 		
 		var newElem = document.createElement("p");
 		var box = document.createElement("input");
@@ -48,7 +48,7 @@ function ritaUppInvesteringar(){
 	}
 }
 function updateDescriptions(){
-	for (i=0; i<Budgets.investeringar.length;i++){
+	for (var i=0; i<Budgets.investeringar.length;i++){
 		var elem = document.getElementById("InvesteringDescriptionNo"+Budgets.investeringar[i].id);
 		Budgets.investeringar[i].namn = elem.value;
 		
@@ -56,7 +56,7 @@ function updateDescriptions(){
 }
 function saveValues(){
 	console.log("Saving values")
-	for (i=0; i<Budgets.investeringar.length;i++){
+	for (var i=0; i<Budgets.investeringar.length;i++){
 		var elem = document.getElementById("InvesteringNo"+Budgets.investeringar[i].id);
 		Budgets.investeringar[i].value = parseInt(elem.value);
 	}
@@ -64,7 +64,7 @@ function saveValues(){
 	ritaUppAvskrivningar();
 }
 function saveAvskrivningstid(){
-	for (i=0; i<Budgets.investeringar.length;i++){
+	for (var i=0; i<Budgets.investeringar.length;i++){
 		var elem = document.getElementById("InvesteringAvskrivningsTidNo"+Budgets.investeringar[i].id);
 		Budgets.investeringar[i].avskrTid = parseInt(elem.value);	
 	}
@@ -81,7 +81,7 @@ function calculateAvskrivningPerAr(){
 	
 	var totalAvskrivning=0;
 	
-	for (i=0; i<Budgets.investeringar.length;i++){
+	for (var i=0; i<Budgets.investeringar.length;i++){
 		totalAvskrivning +=Budgets.investeringar[i].value/Budgets.investeringar[i].avskrTid;
 	}
 	return totalAvskrivning;
@@ -92,7 +92,7 @@ function caculateTotalInvestering(){
 	console.log("calcuating total")
 	var totalInvestering = 0;
 	var element = document.getElementById("totalInvestering")
-	for (i=0; i< Budgets.investeringar.length;i++){
+	for (var i=0; i< Budgets.investeringar.length;i++){
 		console.log	(Budgets.investeringar[i].value);
 		totalInvestering +=Budgets.investeringar[i].value
 	}

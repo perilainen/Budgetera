@@ -1,74 +1,77 @@
-
-
-function kostnad(type){
-	this.name="delkostnad";
-	this.value=0;
-	this.type=type;
-	this.id = getNewId(Budgets.kostnader);
-}
 function init(){
 	document.getElementById("addKostnad").addEventListener("click",appendKostnad,false);
 }
 function appendKostnad(){
-	var elem = document.getElementById("kostnadstyp");
-	var typ = elem.options[elem.selectedIndex].value;
-	var kost = new kostnad(typ);
-	Budgets.kostnader.push(kost);
+	var typ = document.getElementById("kostnadskategorilist").value;
+	//var typ = elem.value;
+	
+	var kost = new transaktion("kostnad","namn",0,typ,1);
+	Budgets.transaktioner.push(kost);
 	ritaUppKostnader();
+	addKostnadskategori(typ);
+	ritaUppKostandskategorier();
+}
+
+function addKostnadskategori(kategori){
+	// lägg till kategorin om den inte redan finns
+	if(finnsItemILista(kategori,Budgets.Kostnadskategorier)==false){
+		Budgets.Kostnadskategorier.push(kategori)
+	}
+}
+function rensaKostnader(){
+	
+}
+
+function ritaUppKostandskategorier(){
+	var element = document.getElementById("kostnadskategori")
+	rensaElement(element)
+	for (var i=0;i<Budgets.Kostnadskategorier.length;i++){
+		var newElem = document.createElement("option")
+		newElem.setAttribute("value",Budgets.Kostnadskategorier[i])
+		element.appendChild(newElem)
+	}
 }
 function ritaUppKostnader(){
 	var element = document.getElementById("SubKostnader");
-	while (element.firstChild) {
-    	element.removeChild(element.firstChild);
-	}
-	
-	for (i=0;i<Budgets.kostnader.length;i++){
+	rensaElement(element);
+	for (var i=0;i<Budgets.transaktioner.length;i++){
+		
+		if(Budgets.transaktioner[i].type=="kostnad"){
 		var newElem = document.createElement("p");
 		var varde = document.createElement("input")
 		varde.setAttribute("type","number");
-		varde.setAttribute("value",Budgets.kostnader[i].value);
-		varde.setAttribute("id","kostnadVarde"+Budgets.kostnader[i].id);
-		varde.addEventListener("change",saveValuesKostnad,false);
+		varde.setAttribute("value",Budgets.transaktioner[i].value);
+		varde.setAttribute("id",Budgets.transaktioner[i].id);
+		varde.addEventListener("change",saveValues,false);
 		
 		var beskrivning = document.createElement("input");
 		beskrivning.setAttribute("type","string");
-		beskrivning.setAttribute("value",Budgets.kostnader[i].namn);
-		beskrivning.setAttribute("id","kostnadBeskrivning"+Budgets.kostnader[i].id);
-		beskrivning.addEventListener("change",updateDescriptionKostnad,false);
+		beskrivning.setAttribute("value",Budgets.transaktioner[i].namn);
+		beskrivning.setAttribute("id","Beskrivning"+Budgets.transaktioner[i].id);
+		beskrivning.addEventListener("change",updateDescriptions,false);
 		
-		var typ = document.createElement("label");
-		typ.innerHTML=Budgets.kostnader[i].type;
+		var kategori = document.createElement("input")
+		kategori.setAttribute("name","kostnadskategori")
+		kategori.setAttribute("list","kostnadskategori")
+		kategori.setAttribute("value",Budgets.transaktioner[i].kategori)
+		kategori.setAttribute("id","Kategori"+Budgets.transaktioner[i].id);
+		kategori.addEventListener("change",updateKategorier,false);
+		
+		
+		var deleteButton = document.createElement("input");
+		deleteButton.setAttribute("type","button");
+		deleteButton.setAttribute("value","Ta bort");
+		deleteButton.setAttribute("onclick","deleteTransaktion("+Budgets.transaktioner[i].id+")")
+			
 		newElem.appendChild(beskrivning);
 		newElem.appendChild(varde);
-		newElem.appendChild(typ);
 		
+		newElem.appendChild(deleteButton);
+		newElem.appendChild(kategori);
 		element.appendChild(newElem);
 	}
-}
-function saveValuesKostnad(){
-	for (i=0; i<Budgets.kostnader.length;i++){
-		
-		var elem = document.getElementById("kostnadVarde"+Budgets.kostnader[i].id);
-		Budgets.kostnader[i].value = parseInt(elem.value);
-	}
-	ritaTotalKostnad();
-	
-	
-}
-function ritaTotalKostnad(){
-	totalKostnad = calculateTotalKostnad();
-	var element = document.getElementById("totalKostnad");
-	element.innerHTML=totalKostnad;
-}
-function calculateTotalKostnad(){
-	var totalKostnad = 0;
-	
-	for (i=0;i<Budgets.kostnader.length;i++){
-		totalKostnad += Budgets.kostnader[i].value;
-	}
-	return totalKostnad;
-	
-}
+}}
+
 function updateDescriptionKostnad(){
 	updateDescription(Budgets.kostnader,"kostnadBeskrivning");
 }

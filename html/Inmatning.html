@@ -8,7 +8,7 @@
     	<link rel="stylesheet" type="text/css" href="../css/inmatning.css">
     	<link rel="stylesheet" type="text/css" href="../css/tabs.css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>New Web Project</title>
+        <title>My Budget</title>
         <script type="text/javascript" src="../js/add.js"></script>
         <script type="text/javascript" src="../js/Investeringar.js"></script>
         <script type="text/javascript" src="../js/generella.js"></script>
@@ -32,6 +32,7 @@
     					<label class="test">Investeringar</label>
     					<input type="button" value="Lägg till" id="addInvestering"/>
     					<input type="button" value="SparaBudget" id="saveBudget"/>
+    					<input type="button" value="RensaBudget" id="clearBudget"/>
     					<div class="Subinesteringar" id = "SubInvesteringar"></div>
     					<p>
     						<label class="text">Totala Investeringar: </label>
@@ -39,33 +40,27 @@
     						<label class="text">Avskrivning per år: </label>
     						<output name="test" id="AvskrivningPerAr" class="summa"></output>
     					</p>
-    					
- 
     				</div>
     				<div class="Inkomster" id ="inkomster">
     					<label class="test">Inkomster</label>
     					<input type="button" value="Lägg till" id="addInkomst"/>
-    					<select id="inkomsttyp">
-    						<option value="Daglig">Daglig</option>
-    						<option value="Engångs">Engångs</option>
-    						<option value="Månadsvis">Månadsvis</option>
-  						</select>
-  						<input type="number" id ="daysPerYear" value = "300"/>
+    					
+    					<input list="inkomstkategori" name="inkomstkategorier" id="inkomstkategorilist">
+							<datalist id="inkomstkategori">  
+							</datalist>
+    					<input type="number" id ="daysPerYear" value = "300"/>
     					<div class="Subinkomster" id = "SubInkomster"></div>
     					<p>
     						<label class="text">Totala Inkomster: </label>
     						<output name="test" id="totalInkomst" class="summa"></output>
-    					</p>
-    					
+    					</p>    					
     				</div>
     				<div class="Konstnader" id ="kostnader">
     					<label class="test">Kostnader</label>
     					<input type="button" value="Lägg till" id="addKostnad"/>
-    					<select id="kostnadstyp">
-    						<option value="Direkta">Direkta</option>
-    						<option value="Övriga">Övriga</option>
-    						<option value="Ränta">Ränta</option>
-  						</select>
+    					<input list="kostnadskategori" name="kostnadskategorier" id="kostnadskategorilist">
+							<datalist id="kostnadskategori">
+							</datalist>
   						
     					<div class="Subkostnader" id = "SubKostnader"></div>
     					<p>

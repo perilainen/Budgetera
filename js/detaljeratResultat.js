@@ -13,18 +13,18 @@ function ritaDetaljeradResultaträkning(){
 	var omsättningInner = innerHTMLOmsättning();
 	element.appendChild(omsättningInner);
 	
-	getInkomstTyper();
+	
 }
 
 function innerHTMLDetaljeradOmsättning(){
 	var detaljeradOmsättning = document.createElement("div")
-	var typer = getInkomstTyper();
+	var typer = getKategorier("inkomst");
 	
 	console.log(typer.length);
 	for (var i=0;i<typer.length;i++){
 		console.log(i)
 		var typ = typer[i];
-		var varde = calculateInkomsttyp(typ);
+		var varde = calculateTotalTypeKategori("inkomst",typ);
 		var paragraf = getInnerHTML(varde,typ+" inkomst","smallFont");
 		detaljeradOmsättning.appendChild(paragraf)
 	}

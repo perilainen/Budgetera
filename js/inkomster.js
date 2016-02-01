@@ -1,104 +1,93 @@
-function inkomst(type){
-	this.namn = "inkomst";
-	this.value = 0;
-	this.type = type;
-	console.log(Budgets.inkomster)
-	this.id = getNewId(Budgets.inkomster);
-	this.antal=1;	
-}
-
 function init(){
 	document.getElementById("addInkomst").addEventListener("click",appendInkomst,false);
 } 
 
 function appendInkomst(){
-	var elem = document.getElementById("inkomsttyp");
-	var typ = elem.options[ elem.selectedIndex ].value;
-	var inkom = new transaktion("inkomst","namn",0,"inkomst",1);
+	var typ = document.getElementById("inkomstkategorilist").value;
+	var inkom = new transaktion("inkomst","namn",0,typ,hämtaDagarInmatning());
 	Budgets.transaktioner.push(inkom);
+	console.log(inkom.antal)
 	ritaUppInkomster();
+	addInkomstkategori(typ);
+	ritaUppInkomstkategorier();
+}
+function addInkomstkategori(kategori){
+	if(!finnsItemILista(kategori,Budgets.Inkomstkategorier)){
+		Budgets.Inkomstkategorier.push(kategori)
+	}
+}
+
+function ritaUppInkomstkategorier(){
+	var element = document.getElementById("inkomstkategori")
+	rensaElement(element)
+	for (var i=0;i<Budgets.Inkomstkategorier.length;i++){
+		var newElem = document.createElement("option")
+		newElem.setAttribute("value",Budgets.Inkomstkategorier[i])
+		element.appendChild(newElem)
+	}
 }
 function ritaUppInkomster(){
 	var element = document.getElementById("SubInkomster");
-	while (element.firstChild) {
-    	element.removeChild(element.firstChild);
-	}
-	console.log(Budgets.transaktioner.length)
-	for (i=0;i<Budgets.transaktioner.length;i++){
-		console.log(Budgets.transaktioner[i].type)
+	rensaElement(element);
+	
+	
+	for (var i=0;i<Budgets.transaktioner.length;i++){
 		if (Budgets.transaktioner[i].type=="inkomst"){
 			var newElem = document.createElement("p");
 			var varde = document.createElement("input");
 			varde.setAttribute("type","number");
 			varde.setAttribute("value",Budgets.transaktioner[i].value);
-			varde.setAttribute("id","inkomstVarde"+Budgets.transaktioner[i].id);
-			varde.addEventListener("change",saveValuesInkomst,false);
+			varde.setAttribute("id",Budgets.transaktioner[i].id);
+			varde.addEventListener("change",saveValues,false);
 			
 			var beskrivning = document.createElement("input");
 			beskrivning.setAttribute("type","string");
 			beskrivning.setAttribute("value",Budgets.transaktioner[i].namn);
-			beskrivning.setAttribute("id","inkomstBeskrivning"+Budgets.transaktioner[i].id);
-			beskrivning.addEventListener("change",updateDescriptionInkomst,false);
+			beskrivning.setAttribute("id","Beskrivning"+Budgets.transaktioner[i].id);
+			beskrivning.addEventListener("change",updateDescriptions,false);
 			
-			var typ = document.createElement("label");
-			typ.innerHTML=Budgets.transaktioner[i].type;
+			var kategori = document.createElement("input")
+			kategori.setAttribute("name","inkomstkategori")
+			kategori.setAttribute("list","inkomstkategori")
+			kategori.setAttribute("value",Budgets.transaktioner[i].kategori)
+			kategori.setAttribute("id","Kategori"+Budgets.transaktioner[i].id);
+			kategori.addEventListener("change",updateKategorier,false);
+		
+			
+			
+			var deleteButton = document.createElement("input");
+			deleteButton.setAttribute("type","button");
+			deleteButton.setAttribute("value","Ta bort");
+			deleteButton.setAttribute("onclick","deleteTransaktion("+Budgets.transaktioner[i].id+")")
+			
 			newElem.appendChild(beskrivning);
 			newElem.appendChild(varde);
-			newElem.appendChild(typ);	
+			
+			newElem.appendChild(deleteButton);
+			newElem.appendChild(kategori);
+			
 			element.appendChild(newElem);
+			
 		}
 	}
 }
 
 function updateDescriptionInkomst(){
-	updateDescription(Budgets.inkomster,"inkomstBeskrivning")
-}
-function saveValuesInkomst(){	
-	for (i=0; i<Budgets.inkomster.length;i++){
-		var elem = document.getElementById("inkomstVarde"+Budgets.inkomster[i].id);
-		Budgets.inkomster[i].value = parseInt(elem.value);
-	}
-	ritaTotalInkomst();
-}
-function ritaTotalInkomst(){
-	var element = document.getElementById("totalInkomst");
-	totalInkomst = calculateTotalInkomst();
-	element.innerHTML = totalInkomst;
+	updateDescription(Budgets.transaktioner,"namn")
 }
 
-function getInkomstTyper(){
-	var inkomstTyper=[];
-	for (i=0;i<Budgets.inkomster.length;i++){
-		//console.log(inkomstTyper.indexOf(Budgets.inkomster[i].type))
-		if (inkomstTyper.indexOf(Budgets.inkomster[i].type)==-1){
-			inkomstTyper.push(Budgets.inkomster[i].type)
-		}
-		
-		
+function hämtaDagarInmatning(){
+	var typ = document.getElementById("inkomstkategorilist").value;
+	if (typ=="Daglig"){
+		return parseInt(document.getElementById("daysPerYear").value);
 	}
-	//console.log(inkomstTyper);
-	return inkomstTyper
+	if (typ=="Månadsvis"){
+		return 12;
+	}
+	return 1;
 }
 
-function calculateInkomsttyp(typ){
-	var inkomst = 0;
-	for (i=0;i<Budgets.inkomster.length;i++){
-		if (Budgets.inkomster[i].type==typ){
-			inkomst += hämtaÅrligInkomst(Budgets.inkomster[i]);
-		}
-	}
-	return inkomst
-}
 
-function calculateTotalInkomst(){
-	var totalInkomst = 0;
-	
-	for (i=0;i<Budgets.inkomster.length;i++){
-		console.log("Inkomst nummer "+i+1+" är: "+Budgets.inkomster[i].value)	
-		totalInkomst += hämtaÅrligInkomst(Budgets.inkomster[i]);
-	}
-	return totalInkomst;
-}
 function hämtaÅrligInkomst(ink){
 	var days = 1;
 	if (ink.type=="Daglig"){
