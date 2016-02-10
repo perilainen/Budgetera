@@ -8,7 +8,7 @@ function investering(){
 
 function init(){
 	document.getElementById("addInvestering").addEventListener("click",appendInvestering,false);
-	console.log("test");
+	
 }
 
 function appendInvestering(){
@@ -28,18 +28,19 @@ function ritaUppInvesteringar(){
 		box.setAttribute("type","number");
 		box.setAttribute("value",Budgets.investeringar[i].value);
 		box.setAttribute("id","InvesteringNo"+Budgets.investeringar[i].id);
-		box.addEventListener("change",saveValues,false);
+		box.addEventListener("change",saveValuesAvskrivning,false);
 		boxDescription = document.createElement("input");
 		boxDescription.setAttribute("type","string");
 		boxDescription.setAttribute("value",Budgets.investeringar[i].namn);
 		boxDescription.addEventListener("change",updateDescriptions,false);
 		boxDescription.setAttribute("id","InvesteringDescriptionNo"+Budgets.investeringar[i].id);
+		boxDescription.setAttribute("title",Budgets.investeringar[i].id);
 		
 		boxAvskrivningstid = document.createElement("input");
 		boxAvskrivningstid.setAttribute("type","number");
 		boxAvskrivningstid.setAttribute("value",Budgets.investeringar[i].avskrTid);
 		boxAvskrivningstid.setAttribute("id","InvesteringAvskrivningsTidNo"+Budgets.investeringar[i].id);
-		box.addEventListener("change",saveAvskrivningstid,false);
+		boxAvskrivningstid.addEventListener("change",saveAvskrivningstid,false);
 		
 		newElem.appendChild(boxDescription);
 		newElem.appendChild(box);
@@ -54,8 +55,8 @@ function updateDescriptions(){
 		
 	}
 }
-function saveValues(){
-	console.log("Saving values")
+function saveValuesAvskrivning(){
+	
 	for (var i=0; i<Budgets.investeringar.length;i++){
 		var elem = document.getElementById("InvesteringNo"+Budgets.investeringar[i].id);
 		Budgets.investeringar[i].value = parseInt(elem.value);
@@ -64,15 +65,17 @@ function saveValues(){
 	ritaUppAvskrivningar();
 }
 function saveAvskrivningstid(){
+	
 	for (var i=0; i<Budgets.investeringar.length;i++){
 		var elem = document.getElementById("InvesteringAvskrivningsTidNo"+Budgets.investeringar[i].id);
 		Budgets.investeringar[i].avskrTid = parseInt(elem.value);	
 	}
-	
+	caculateTotalInvestering();
+	ritaUppAvskrivningar();
 	
 }
 function ritaUppAvskrivningar(){
-	var element = document.getElementById("AvskrivningPerAr")
+	var element = document.getElementById("AvskrivningPerAr");
 	var avskrivning = calculateAvskrivningPerAr();
 	element.innerHTML=avskrivning;
 }
@@ -89,12 +92,12 @@ function calculateAvskrivningPerAr(){
 }
 
 function caculateTotalInvestering(){
-	console.log("calcuating total")
+	
 	var totalInvestering = 0;
-	var element = document.getElementById("totalInvestering")
+	var element = document.getElementById("totalInvestering");
 	for (var i=0; i< Budgets.investeringar.length;i++){
-		console.log	(Budgets.investeringar[i].value);
-		totalInvestering +=Budgets.investeringar[i].value
+		
+		totalInvestering +=Budgets.investeringar[i].value;
 	}
 	//element.setUserData(totalInvestering);
 	element.innerHTML = totalInvestering;

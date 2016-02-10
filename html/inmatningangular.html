@@ -1,0 +1,93 @@
+<!--
+Per Johansson
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		 <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular-xeditable Starter Template</title>
+    <!-- Bootstrap 3 css -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Angular.js -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script-->
+    <!-- Angular-xeditable -->
+    <link href="../angular-xeditable/css/xeditable.css" rel="stylesheet">
+    <script src="../angular-xeditable/js/xeditable.js"></script>
+    <!-- app.js -->
+    <script src="../js/controller.js"></script>
+    <script src="https://code.angularjs.org/1.0.8/angular-mocks.js"></script>
+    
+  </head>
+			<body>
+		<header>
+
+			
+
+		</header>
+		
+		
+			<div ng-app="app" ng-controller="Ctrl">
+				<button type="button" ng-click="loadUsers()">
+				Ladda om
+			</button>
+				<select ng-model="user" ng-options="field.name for field in names" onshow="loadUsers()"  ng-change="setDocumentlist(user.name)"></select>
+			
+			<select ng-model="score" ng-options="document.name for document in documents" ng-change=setDocument(user.name,score.Objectid)></select>
+			{{user}}
+			{{score}}
+			{{budget.investeringar}}
+  <form editable-form name="tableform" onaftersave="saveTable()" oncancel="cancel()">
+
+    <!-- table -->
+    <table class="table table-bordered table-hover table-condensed">
+      <tr style="font-weight: bold">
+        <td style="width:40%">Name</td>
+        <td style="width:30%">Status</td>
+        <td style="width:30%">Group</td>
+        <td style="width:30%"><span ng-show="tableform.$visible">Action</span></td>
+      </tr>
+      <tr ng-repeat="user in users | filter:filterUser">
+        <td>
+          <!-- editable username (text with validation) -->
+          <span editable-text="user.name" e-form="tableform" onbeforesave="checkName($data, user.id)">
+            {{ user.name || 'empty' }}
+          </span>
+        </td>
+        <td>
+          <!-- editable status (select-local) -->
+          <span editable-select="user.status" e-form="tableform" e-ng-options="s.value as s.text for s in statuses">
+            {{ showStatus(user) }}
+          </span>
+        </td>
+        <td>
+          <!-- editable group (select-remote) -->
+          <span editable-select="user.group" e-form="tableform" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
+            {{ showGroup(user) }}
+          </span>
+        </td>
+        <td><button type="button" ng-show="tableform.$visible" ng-click="deleteUser(user.id)" class="btn btn-danger pull-right">Del</button></td>
+      </tr>
+    </table>
+
+    <!-- buttons -->
+    <div class="btn-edit">
+      <button type="button" class="btn btn-default" ng-show="!tableform.$visible" ng-click="tableform.$show()">
+        edit
+      </button>
+    </div>
+    <div class="btn-form" ng-show="tableform.$visible">
+      <button type="button" ng-disabled="tableform.$waiting" ng-click="addUser()" class="btn btn-default pull-right">add row</button>
+      <button type="submit" ng-disabled="tableform.$waiting" class="btn btn-primary">save</button>
+      <button type="button" ng-disabled="tableform.$waiting" ng-click="tableform.$cancel()" class="btn btn-default">cancel</button>
+    </div> 
+    
+  </form>
+
+
+		
+
+	</body>
+</html>

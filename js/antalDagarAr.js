@@ -15,9 +15,9 @@ function getWorkingDays(startDate, endDate){
 function init(){
 	var begin = new Date(2016, 01, 1);
  	var end = new Date(2016, 12, 31);
- 	elem = document.getElementById("daysPerYear")
+ 	elem = document.getElementById("daysPerYear");
  	var days = getWorkingDays(begin, end); // result = 12 days
- 	elem.value=days	
+ 	elem.value=days;
 }
 window.addEventListener("load", init, false);
  

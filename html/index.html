@@ -7,6 +7,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>New Web Project</title>
+        <script src="../angularjs/angularfunctions.js"></script>
     </head>
     <body>
     	<header>
@@ -14,5 +15,14 @@
     		<a class="link" href=Resultat.html>Resutat</a>
     	</header>
         <h1>New Web Project Page</h1>
+        <div class="angularresult" ng-app="myApp" ng-controller="myCtrl">
+			<select ng-model="user" ng-options="field.name for field in names" ng-change="setDocumentlist(user.name)"></select>
+			
+			<select ng-model="score" ng-options="document.name for document in documents" ng-change=setDocument(user.name,score.Objectid)></select>
+			{{user}}
+			{{score}}
+			{{budget.investeringar}}
+			
+		</div>
     </body>
 </html>

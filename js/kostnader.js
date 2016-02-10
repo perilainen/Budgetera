@@ -15,7 +15,7 @@ function appendKostnad(){
 function addKostnadskategori(kategori){
 	// lägg till kategorin om den inte redan finns
 	if(finnsItemILista(kategori,Budgets.Kostnadskategorier)==false){
-		Budgets.Kostnadskategorier.push(kategori)
+		Budgets.Kostnadskategorier.push(kategori);
 	}
 }
 function rensaKostnader(){
@@ -23,12 +23,12 @@ function rensaKostnader(){
 }
 
 function ritaUppKostandskategorier(){
-	var element = document.getElementById("kostnadskategori")
-	rensaElement(element)
+	var element = document.getElementById("kostnadskategori");
+	rensaElement(element);
 	for (var i=0;i<Budgets.Kostnadskategorier.length;i++){
-		var newElem = document.createElement("option")
-		newElem.setAttribute("value",Budgets.Kostnadskategorier[i])
-		element.appendChild(newElem)
+		var newElem = document.createElement("option");
+		newElem.setAttribute("value",Budgets.Kostnadskategorier[i]);
+		element.appendChild(newElem);
 	}
 }
 function ritaUppKostnader(){
@@ -38,7 +38,7 @@ function ritaUppKostnader(){
 		
 		if(Budgets.transaktioner[i].type=="kostnad"){
 		var newElem = document.createElement("p");
-		var varde = document.createElement("input")
+		var varde = document.createElement("input");
 		varde.setAttribute("type","number");
 		varde.setAttribute("value",Budgets.transaktioner[i].value);
 		varde.setAttribute("id",Budgets.transaktioner[i].id);
@@ -48,12 +48,13 @@ function ritaUppKostnader(){
 		beskrivning.setAttribute("type","string");
 		beskrivning.setAttribute("value",Budgets.transaktioner[i].namn);
 		beskrivning.setAttribute("id","Beskrivning"+Budgets.transaktioner[i].id);
+		beskrivning.setAttribute("title",Budgets.transaktioner[i].id);
 		beskrivning.addEventListener("change",updateDescriptions,false);
 		
-		var kategori = document.createElement("input")
-		kategori.setAttribute("name","kostnadskategori")
-		kategori.setAttribute("list","kostnadskategori")
-		kategori.setAttribute("value",Budgets.transaktioner[i].kategori)
+		var kategori = document.createElement("input");
+		kategori.setAttribute("name","kostnadskategori");
+		kategori.setAttribute("list","kostnadskategori");
+		kategori.setAttribute("value",Budgets.transaktioner[i].kategori);
 		kategori.setAttribute("id","Kategori"+Budgets.transaktioner[i].id);
 		kategori.addEventListener("change",updateKategorier,false);
 		
@@ -61,7 +62,7 @@ function ritaUppKostnader(){
 		var deleteButton = document.createElement("input");
 		deleteButton.setAttribute("type","button");
 		deleteButton.setAttribute("value","Ta bort");
-		deleteButton.setAttribute("onclick","deleteTransaktion("+Budgets.transaktioner[i].id+")")
+		deleteButton.setAttribute("onclick","deleteTransaktion("+Budgets.transaktioner[i].id+")");
 			
 		newElem.appendChild(beskrivning);
 		newElem.appendChild(varde);

@@ -1,110 +1,131 @@
 <!DOCTYPE html>
 <!--
-	Per Johansson
+Per Johansson
 -->
 
 <html>
-    <head>
-    	<link rel="stylesheet" type="text/css" href="../css/inmatning.css">
-    	<link rel="stylesheet" type="text/css" href="../css/tabs.css">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>My Budget</title>
-        <script type="text/javascript" src="../js/add.js"></script>
-        <script type="text/javascript" src="../js/Investeringar.js"></script>
-        <script type="text/javascript" src="../js/generella.js"></script>
-        <script type="text/javascript" src="../js/inkomster.js"></script>
-        <script type="text/javascript" src="../js/kostnader.js"></script>
-        <script type="text/javascript" src="../js/antalDagarAr.js"></script>
-        <script type="text/javascript" src="../js/resultatrakning.js"></script>
-        <script type="text/javascript" src="../js/detaljeratResultat.js"></script>
-        <script type="text/javascript" src="../js/Budget.js"></script>
-        <script type="text/javascript" src="../js/httprequests.js"></script>
-        <script type="text/javascript" src="../js/transaktioner.js"></script>
-        
-    </head>
-    <body>
-    	<header>
-    		<div class="inmatning" id="inmatningsfönster">
-    			    		<form id="inmatning">
+	<head>
+		<link rel="stylesheet" type="text/css" href="../css/inmatning.css">
+		<link rel="stylesheet" type="text/css" href="../css/tabs.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>My Budget</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
-    			<p>
-    				<div class="Investeringas" id ="Investeringar">
-    					<label class="test">Investeringar</label>
-    					<input type="button" value="Lägg till" id="addInvestering"/>
-    					<input type="button" value="SparaBudget" id="saveBudget"/>
-    					<input type="button" value="RensaBudget" id="clearBudget"/>
-    					<div class="Subinesteringar" id = "SubInvesteringar"></div>
-    					<p>
-    						<label class="text">Totala Investeringar: </label>
-    						<output name="test" id="totalInvestering" class="summa"></output>
-    						<label class="text">Avskrivning per år: </label>
-    						<output name="test" id="AvskrivningPerAr" class="summa"></output>
-    					</p>
-    				</div>
-    				<div class="Inkomster" id ="inkomster">
-    					<label class="test">Inkomster</label>
-    					<input type="button" value="Lägg till" id="addInkomst"/>
-    					
-    					<input list="inkomstkategori" name="inkomstkategorier" id="inkomstkategorilist">
-							<datalist id="inkomstkategori">  
-							</datalist>
-    					<input type="number" id ="daysPerYear" value = "300"/>
-    					<div class="Subinkomster" id = "SubInkomster"></div>
-    					<p>
-    						<label class="text">Totala Inkomster: </label>
-    						<output name="test" id="totalInkomst" class="summa"></output>
-    					</p>    					
-    				</div>
-    				<div class="Konstnader" id ="kostnader">
-    					<label class="test">Kostnader</label>
-    					<input type="button" value="Lägg till" id="addKostnad"/>
-    					<input list="kostnadskategori" name="kostnadskategorier" id="kostnadskategorilist">
-							<datalist id="kostnadskategori">
-							</datalist>
-  						
-    					<div class="Subkostnader" id = "SubKostnader"></div>
-    					<p>
-    						<label class="text">Totala Kostnader: </label>
-    						<output name="test" id="totalKostnad" class="summa"></output>
-    					</p>
-    					
-    				</div>
-    				
-    			</p>
-    			
-    		</form>
-    		</div>
-    		<div class="tabs" id="resultatFönster">
-    			<div class="tab">
-       				<input type="radio" id="tab-1" name="tab-group-1" checked>
-       				<label for="tab-1">Resultat</label>
-       
-       				<div class="content" id="resultatrakning">
-           				<h1>Resultaträkning</h1>
-           				
-       				</div> 
-   				</div>
-    
-			   <div class="tab">
-			       <input type="radio" id="tab-2" name="tab-group-1">
-			       <label for="tab-2">Detaljerat resultat</label>
-			       
-			       <div class="content" id="detaljeradResultaträkning">
-			           <h1>Detaljerad resultaträkning</h1>
-			       </div> 
-			   </div>
-    
-			    <div class="tab">
-			       <input type="radio" id="tab-3" name="tab-group-1">
-			       <label for="tab-3">Tab Three</label>
-			     
-			       <div class="content">
-			           stuff tab 3
-			       </div> 
-			   </div>
-    			
-    		</div>
-    	</header>
-        
-    </body>
+		<script type="text/javascript" src="../js/Investeringar.js"></script>
+		<script type="text/javascript" src="../js/generella.js"></script>
+		<script type="text/javascript" src="../js/inkomster.js"></script>
+		<script type="text/javascript" src="../js/kostnader.js"></script>
+		<script type="text/javascript" src="../js/antalDagarAr.js"></script>
+		<script type="text/javascript" src="../js/resultatrakning.js"></script>
+		<script type="text/javascript" src="../js/detaljeratResultat.js"></script>
+		<script type="text/javascript" src="../js/Budget.js"></script>
+		<script type="text/javascript" src="../js/httprequests.js"></script>
+		<script type="text/javascript" src="../js/transaktioner.js"></script>
+		<script src="../js/hello.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="https://code.angularjs.org/1.0.6/angular-resource.js"></script>
+		<script src="../angularjs/angularfunctions.js"></script>
+		
+
+		<script></script>
+	</head>
+	<body>
+		<header>
+
+			<button id = "laddaOm">
+				Ladda om
+			</button>
+
+		</header>
+		<div class="inmatning" id="inmatningsfönster">
+			<form id="inmatning">
+
+				<p>
+					<div class="Investeringas" id ="Investeringar">
+						<label class="test">Investeringar</label>
+						<input type="button" value="Lägg till" id="addInvestering"/>
+						<input type="button" value="SparaBudget" id="saveBudget"/>
+						<input type="button" value="RensaBudget" id="clearBudget"/>
+						<div class="Subinesteringar" id = "SubInvesteringar"></div>
+						<p>
+							<label class="text">Totala Investeringar: </label>
+							<output name="test" id="totalInvestering" class="summa"></output>
+							<label class="text">Avskrivning per år: </label>
+							<output name="test" id="AvskrivningPerAr" class="summa"></output>
+						</p>
+					</div>
+					<div class="Inkomster" id ="inkomster">
+						<label class="test">Inkomster</label>
+						<input type="button" value="Lägg till" id="addInkomst"/>
+
+						<input list="inkomstkategori" name="inkomstkategorier" id="inkomstkategorilist">
+						<datalist id="inkomstkategori"></datalist>
+						<input type="number" id ="daysPerYear" value = "300"/>
+						<div class="Subinkomster" id = "SubInkomster"></div>
+						<p>
+							<label class="text">Totala Inkomster: </label>
+							<output name="test" id="totalInkomst" class="summa"></output>
+						</p>
+					</div>
+					<div class="Konstnader" id ="kostnader">
+						<label class="test">Kostnader</label>
+						<input type="button" value="Lägg till" id="addKostnad"/>
+						<input list="kostnadskategori" name="kostnadskategorier" id="kostnadskategorilist">
+						<datalist id="kostnadskategori"></datalist>
+
+						<div class="Subkostnader" id = "SubKostnader"></div>
+						<p>
+							<label class="text">Totala Kostnader: </label>
+							<output name="test" id="totalKostnad" class="summa"></output>
+						</p>
+
+					</div>
+
+				</p>
+
+			</form>
+		</div>
+		<div class="tabs" id="resultatFönster">
+			<div class="tab">
+				<input type="radio" id="tab-1" name="tab-group-1" checked>
+				<label for="tab-1">Resultat</label>
+
+				<div class="content" id="resultatrakning">
+					<h1>Resultaträkning</h1>
+
+				</div>
+			</div>
+
+			<div class="tab">
+				<input type="radio" id="tab-2" name="tab-group-1">
+				<label for="tab-2">Detaljerat resultat</label>
+
+				<div class="content" id="detaljeradResultaträkning">
+					<h1>Detaljerad resultaträkning</h1>
+				</div>
+			</div>
+
+			<div class="tab">
+				<input type="radio" id="tab-3" name="tab-group-1">
+				<label for="tab-3">Tab Three</label>
+
+				<div class="content">
+					stuff tab 3
+				</div>
+			</div>
+
+		</div>
+		<div class="angularresult" ng-app="myApp" ng-controller="myCtrl">
+			<select ng-model="user" ng-options="field.name for field in names" ng-change="setDocumentlist(user.name)"></select>
+			
+			<select ng-model="score" ng-options="document.name for document in documents" ng-change=setDocument(user.name,score.Objectid)></select>
+			{{user}}
+			{{score}}
+			{{budget.investeringar}}
+			
+		</div>
+
+		
+
+	</body>
 </html>

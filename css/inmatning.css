@@ -1,9 +1,16 @@
+
+
 div.inmatning{
-	width:60%;
-	height:500px;
+	width:40%;
+	
 	float:left;
 	border:3px solid navy;
 	overflow: scroll;
+}
+
+div.angularresult{
+	position:relative;
+	float:left;
 }
 
 div.resultat{
@@ -20,7 +27,7 @@ input{
 input:hover{
 	background:#FFFFFF;
 }
-output.resultaträkning{
+output.resultatrakning{
 	float:right;
 }
 

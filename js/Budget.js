@@ -1,29 +1,31 @@
 var Budgets =[];
+
 function initBudget(){
 	document.getElementById("saveBudget").addEventListener("click",saveBudgetLocal,false);
 	document.getElementById("clearBudget").addEventListener("click",clearBudgetLocal,false);
-	console.log(localStorage.budgets);
+	
 	var storedData = localStorage.getItem("budgets");
-	console.log(storedData===null)
+	
 	if (storedData===null){
-		console.log("Creating new budget")
+		
 		Budgets = new Budget("Budget Name");
 	}
 	else{
 		Budgets = JSON.parse(localStorage.getItem("budgets"));
 		if (Budgets.Kostnadskategorier==null){
-			initKostnadskategorier()
+			initKostnadskategorier();
 		}
 		if (Budgets.Inkomstkategorier==null){
-			initInkomstkategorier()
+			initInkomstkategorier();
 		}
+		initTransaktioner();
 		
 	}
 	reDrawAll();
 }	
 	//Budgets = new Budget("Budget Name");
 function clearBudgetLocal(){
-	localStorage.removeItem("budgets")
+	localStorage.removeItem("budgets");
 	initBudget();
 	
 }
@@ -32,7 +34,7 @@ function initKostnadskategorier () {
 }
 
 function initInkomstkategorier(){
-	Budgets.Inkomstkategorier=["Daglig","Engångs","Månadsvis"]
+	Budgets.Inkomstkategorier=["Daglig","Engångs","Månadsvis"];
 }
 
 
@@ -44,7 +46,7 @@ function Budget(name){
 	this.name = "name";	
 	this.transaktioner =[];
 	this.investeringar = [];
-	this.Kostnadskategorier= ["Direkta","Övriga","Ränta"]
-	this.Inkomstkategorier=["Daglig","Engångs","Månadsvis"]
+	this.Kostnadskategorier= ["Direkta","Övriga","Ränta"];
+	this.Inkomstkategorier=["Daglig","Engångs","Månadsvis"];
 }
 window.addEventListener("load", initBudget, false);
